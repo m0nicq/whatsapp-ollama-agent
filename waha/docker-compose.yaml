@@ -1,0 +1,18 @@
+services:
+  waha:
+    restart: always
+    image: devlikeapro/waha:latest
+    container_name: whatsapp_waha
+    ports:
+      - "8000:3000"
+    environment:
+      - WHATSAPP_HOOK_URL=http://host.docker.internal:5000/whatsapp
+      - WHATSAPP_HOOK_EVENTS=message
+      - WAHA_API_KEY=yoursecretkey
+      - WAHA_API_KEY_PLAIN=yoursecretkey
+      - WAHA_DASHBOARD_USERNAME=admin
+      - WAHA_DASHBOARD_PASSWORD=yoursecretpassword
+      - WHATSAPP_SWAGGER_USERNAME=admin
+      - WHATSAPP_SWAGGER_PASSWORD=yoursecretpassword
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
